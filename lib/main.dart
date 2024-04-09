@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/geolocation.dart';
+import 'package:geolocator/geolocator.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  MyAppState createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> {
   Future<void> initApp() async {
     await determinePosition();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initApp();
   }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    initApp();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
