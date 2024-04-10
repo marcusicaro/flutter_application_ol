@@ -10,19 +10,21 @@ Future<void> requestAccessToLocation() async {
 
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
-    return Future.error('Location services are disabled.');
+    return Future.error(
+        'Location services are disabled. Please enable to continue.');
   }
 
   permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
-      return Future.error('Location permissions are denied');
+      return Future.error(
+          'Location permissions are denied. Please allow to continue.');
     }
   }
 
   if (permission == LocationPermission.deniedForever) {
     return Future.error(
-        'Location permissions are permanently denied, we cannot request permissions.');
+        'Location permissions are permanently denied. Please allow to continue..');
   }
 }

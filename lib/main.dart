@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/login.dart';
+import 'package:flutter_application_1/screens/login.dart';
 import 'package:flutter_application_1/utils/geolocator.dart';
 import 'package:flutter_application_1/utils/global_snackbar.dart';
 import 'package:geolocator/geolocator.dart';
@@ -51,7 +51,7 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
         scaffoldMessengerKey: GlobalSnackbar.key,
         title: 'Location Service',
-        theme: ThemeData.dark(),
+        theme: ThemeData.light(),
         home: _getHomeWidget(isLocationServiceEnabled, formKey, emailController,
             passwordController));
   }
@@ -62,14 +62,14 @@ Widget _getHomeWidget(
   if (isLocationServiceEnabled == true) {
     return LoginScreen(
       formKey: formKey,
-      emailController: emailController,
+      usernameController: emailController,
       passwordController: passwordController,
     );
   }
   if (isLocationServiceEnabled == false) {
     return const Scaffold(
       body: Center(
-        child: Text('Please allow access to your location'),
+        child: Text('This app requires access to your device location.'),
       ),
     );
   }

@@ -16,10 +16,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
   var windSpeed;
 
   Future getWeather() async {
-    const API_KEY = String.fromEnvironment('API_KEY');
+    const apiKey = String.fromEnvironment('API_KEY', defaultValue: );
     Position position = await Geolocator.getCurrentPosition();
     http.Response response = await http.get(Uri.parse(
-        'https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=${API_KEY}&units=imperial'));
+        'https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=${apiKey}&units=imperial'));
     var results = jsonDecode(response.body);
     setState(() {
       this.temperature = results['main']['temp'];
