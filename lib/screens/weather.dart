@@ -30,36 +30,31 @@ class WeatherScreenState extends State<WeatherScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Weather App'),
-      ),
-      body: CustomFutureBuilder(
-        future: _updateWeatherDataFuture,
-        errorMessage:
-            'It was not possible to get the weather conditions. Please verify your connection.',
-        buildSuccessState: (context, snapshot) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              WeatherText(
-                label: 'Temperature',
-                value: '${weatherData.temperature}°F',
-              ),
-              WeatherText(
-                label: 'Weather',
-                value: weatherData.currently,
-              ),
-              WeatherText(
-                label: 'Humidity',
-                value: '${weatherData.humidity} %',
-              ),
-              WeatherText(
-                label: 'Wind Speed',
-                value: '${weatherData.windSpeed} miles/hour',
-              ),
-            ],
-          ),
+    return CustomFutureBuilder(
+      future: _updateWeatherDataFuture,
+      errorMessage:
+          'It was not possible to get the weather conditions. Please verify your connection.',
+      buildSuccessState: (context, snapshot) => Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            WeatherText(
+              label: 'Temperature',
+              value: '${weatherData.temperature}°F',
+            ),
+            WeatherText(
+              label: 'Weather',
+              value: weatherData.currently,
+            ),
+            WeatherText(
+              label: 'Humidity',
+              value: '${weatherData.humidity} %',
+            ),
+            WeatherText(
+              label: 'Wind Speed',
+              value: '${weatherData.windSpeed} miles/hour',
+            ),
+          ],
         ),
       ),
     );

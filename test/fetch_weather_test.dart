@@ -37,8 +37,8 @@ void main() {
       final client = MockClient();
       final position = MockPosition();
 
-      when(position.latitude).thenReturn(37.7749); // Mock latitude
-      when(position.longitude).thenReturn(-122.4194); // Mock longitude
+      when(position.latitude).thenReturn(37.7749);
+      when(position.longitude).thenReturn(-122.4194);
 
       when(client.get(any)).thenAnswer((_) async => http.Response(
           '{"main": {"temp": 70, "humidity": 80}, "weather": [{"main": "Clear"}], "wind": {"speed": 5}}',

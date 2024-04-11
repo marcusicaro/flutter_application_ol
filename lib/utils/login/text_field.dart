@@ -23,7 +23,10 @@ class CustomTextField extends StatelessWidget {
         obscureText: obscureText,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
+          enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white)),
           labelText: labelText,
+          labelStyle: const TextStyle(color: Colors.white54),
         ),
         validator: (value) {
           if (value == null || value.isEmpty) {
