@@ -36,7 +36,6 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       scaffoldMessengerKey: GlobalSnackbar.key,
-      title: 'Location Service',
       theme: ThemeData.dark().copyWith(
         appBarTheme: AppBarTheme(
             color: Theme.of(context).colorScheme.primary,
