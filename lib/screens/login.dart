@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
       ),
       body: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 600), // Set maximum width
+          constraints: const BoxConstraints(maxWidth: 600), // Set maximum width
           child: Form(
             key: _formKey,
             child: CustomPadding(

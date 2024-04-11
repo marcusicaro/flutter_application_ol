@@ -12,7 +12,7 @@ class WeatherData {
     const apiKey = String.fromEnvironment('API_KEY',
         defaultValue: '553668e995f051c41337492028b87231');
     http.Response response = await client.get(Uri.parse(
-        'https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=${apiKey}&units=imperial'));
+        'https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=$apiKey&units=imperial'));
     var weatherData = jsonDecode(response.body);
     return weatherData;
   }
