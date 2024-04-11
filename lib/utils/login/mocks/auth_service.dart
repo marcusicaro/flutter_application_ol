@@ -2,7 +2,7 @@ class MockAuthService {
   String _username = 'admin';
   String _password = 'admin';
 
-  Future<bool> login(String username, String password) async {
+  bool login(String username, String password) {
     return username == _username && password == _password;
   }
 }

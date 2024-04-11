@@ -1,10 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 
-Future<Position> getPosition() async {
-  return await Geolocator.getCurrentPosition();
-}
-
-Future<void> requestAccessToLocation() async {
+Future<dynamic> requestAccessToLocation() async {
   bool serviceEnabled;
   LocationPermission permission;
 

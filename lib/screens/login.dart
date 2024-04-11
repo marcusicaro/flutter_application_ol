@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/weather.dart';
 import 'package:flutter_application_1/utils/global_snackbar.dart';
-import 'package:flutter_application_1/utils/mock/auth_service.dart';
+import 'package:flutter_application_1/utils/login/custom_padding.dart';
+import 'package:flutter_application_1/utils/login/text_field.dart';
+import 'package:flutter_application_1/utils/login/mocks/auth_service.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
@@ -20,55 +22,31 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Weather app'),
-        backgroundColor: const Color.fromARGB(106, 255, 193, 7),
       ),
       body: Form(
         key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        child: CustomPadding(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: TextFormField(
-                  controller: usernameController,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: "Login"),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    return null;
-                  },
-                ),
+              CustomTextField(
+                controller: usernameController,
+                labelText: "Username",
+                validationMessage: 'Please enter your username',
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: TextFormField(
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: "Password"),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    return null;
-                  },
-                ),
+              CustomTextField(
+                controller: passwordController,
+                labelText: "Password",
+                validationMessage: 'Please enter your password',
+                obscureText: true,
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16.0),
+              CustomPadding(
                 child: Center(
                     child: ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       var authService = MockAuthService();
-                      bool success = await authService.login(
+                      bool success = authService.login(
                         usernameController.text,
                         passwordController.text,
                       );
@@ -76,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => WeatherScreen()),
+                              builder: (context) => const WeatherScreen()),
                         );
                       } else {
                         GlobalSnackbar.show('Invalid credentials');
@@ -85,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                       GlobalSnackbar.show('Please enter your credentials');
                     }
                   },
-                  child: const Text('Submit'),
+                  child: const Text('Login'),
                 )),
               ),
             ],
