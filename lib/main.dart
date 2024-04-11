@@ -38,11 +38,12 @@ class MyAppState extends State<MyApp> {
       scaffoldMessengerKey: GlobalSnackbar.key,
       title: 'Location Service',
       theme: ThemeData.dark().copyWith(
-        primaryColor: Colors.blue,
-        appBarTheme: const AppBarTheme(
-            color: Colors.blue, foregroundColor: Colors.white),
-        colorScheme: const ColorScheme.light(
-            primary: Colors.blue, background: Colors.white),
+        appBarTheme: AppBarTheme(
+            color: Theme.of(context).colorScheme.primary,
+            foregroundColor: Colors.white),
+        colorScheme: ColorScheme.light(
+            primary: Theme.of(context).colorScheme.primary,
+            background: Colors.white),
       ),
       home: Scaffold(
         appBar: AppBar(
