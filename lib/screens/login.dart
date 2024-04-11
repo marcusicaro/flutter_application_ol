@@ -23,50 +23,55 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Weather app'),
       ),
-      body: Form(
-        key: _formKey,
-        child: CustomPadding(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CustomTextField(
-                controller: usernameController,
-                labelText: "Username",
-                validationMessage: 'Please enter your username',
+      body: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 600), // Set maximum width
+          child: Form(
+            key: _formKey,
+            child: CustomPadding(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CustomTextField(
+                    controller: usernameController,
+                    labelText: "Username",
+                    validationMessage: 'Please enter your username',
+                  ),
+                  CustomTextField(
+                    controller: passwordController,
+                    labelText: "Password",
+                    validationMessage: 'Please enter your password',
+                    obscureText: true,
+                  ),
+                  CustomPadding(
+                    child: Center(
+                        child: ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          var authService = MockAuthService();
+                          bool success = authService.login(
+                            usernameController.text,
+                            passwordController.text,
+                          );
+                          if (success) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const WeatherScreen()),
+                            );
+                          } else {
+                            GlobalSnackbar.show('Invalid credentials');
+                          }
+                        } else {
+                          GlobalSnackbar.show('Please enter your credentials');
+                        }
+                      },
+                      child: const Text('Login'),
+                    )),
+                  ),
+                ],
               ),
-              CustomTextField(
-                controller: passwordController,
-                labelText: "Password",
-                validationMessage: 'Please enter your password',
-                obscureText: true,
-              ),
-              CustomPadding(
-                child: Center(
-                    child: ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      var authService = MockAuthService();
-                      bool success = authService.login(
-                        usernameController.text,
-                        passwordController.text,
-                      );
-                      if (success) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const WeatherScreen()),
-                        );
-                      } else {
-                        GlobalSnackbar.show('Invalid credentials');
-                      }
-                    } else {
-                      GlobalSnackbar.show('Please enter your credentials');
-                    }
-                  },
-                  child: const Text('Login'),
-                )),
-              ),
-            ],
+            ),
           ),
         ),
       ),
