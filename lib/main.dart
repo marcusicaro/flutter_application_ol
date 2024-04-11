@@ -46,7 +46,7 @@ class MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Location Service'),
+          title: const Text('Weather App'),
         ),
         body: Navigator(
           initialRoute: '/',
