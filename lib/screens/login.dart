@@ -4,17 +4,33 @@ import 'package:flutter_application_1/utils/login/custom_padding.dart';
 import 'package:flutter_application_1/utils/login/text_field.dart';
 import 'package:flutter_application_1/utils/login/mocks/auth_service.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({
     super.key,
-    required GlobalKey<FormState> formKey,
-    required this.usernameController,
-    required this.passwordController,
-  }) : _formKey = formKey;
+  });
 
-  final GlobalKey<FormState> _formKey;
-  final TextEditingController usernameController;
-  final TextEditingController passwordController;
+  @override
+  LoginScreenState createState() => LoginScreenState();
+}
+
+class LoginScreenState extends State<LoginScreen> {
+  late TextEditingController usernameController;
+  late TextEditingController passwordController;
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    usernameController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

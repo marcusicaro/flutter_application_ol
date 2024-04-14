@@ -17,9 +17,6 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  final formKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   late Future<dynamic> _deviceLocationAccessStatus;
 
   @override
@@ -58,11 +55,8 @@ class MyAppState extends State<MyApp> {
                       future: _deviceLocationAccessStatus,
                       errorMessage:
                           'This app requires access to your device location.',
-                      buildSuccessState: (context, snapshot) => LoginScreen(
-                        formKey: formKey,
-                        usernameController: emailController,
-                        passwordController: passwordController,
-                      ),
+                      buildSuccessState: (context, snapshot) =>
+                          const LoginScreen(),
                     );
                 break;
               case '/weather':
